@@ -1,0 +1,43 @@
+.vercel
+# Node.js dependencies
+node_modules/
+
+# Log files
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment variables file
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+/dist
+/build
+
+# npm package lock
+package-lock.json
+yarn.lock
+
+# Coverage folder
+/coverage
+
+# Puppeteer or other dependencies caches
+/.pki
+/.cache
+
+# Heroku temporary files
+/heroku-buildpack
+
+# VS Code settings folder
+.vscode/
+
+# IDEs or editors temporary files
+.idea/
+
+# Other config files
+*.bak
+*.swp
