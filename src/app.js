@@ -14,7 +14,7 @@ app.post('/send-otp', authenticateApiKey, sendOtpController);
 
 app.use(errorHandler);
 
-const portToListen = process.env.PORT || port;
-app.listen(portToListen, '0.0.0.0', () => {
-    console.log(`Server berjalan di port ${portToListen}`);
+const host = process.env.HOST || '0.0.0.0';
+app.listen(port, host, () => {
+    console.log(`Server berjalan di ${host}:${port}`);
 });
