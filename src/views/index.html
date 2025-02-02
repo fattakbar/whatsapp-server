@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteWhatsApp - API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0056b3;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .email {
+            color: #0056b3;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EliteWhatsApp - API Documentation</h1>
+        <p>Welcome to the EliteWhatsApp API documentation. This API allows you to send WhatsApp messages effortlessly. If you would like to use this API, please request an API key by contacting: <span class="email">suciputri2710.sp@gmail.com</span>.</p>
+
+        <h2>Endpoint</h2>
+        <p><strong>URL:</strong> <code>http://103.172.205.189:3000/send-otp</code></p>
+
+        <h2>Request</h2>
+        <p><strong>Method:</strong> POST</p>
+        <p><strong>Headers:</strong></p>
+        <ul>
+            <li><code>x-api-key</code>: Your API key</li>
+        </ul>
+        <p><strong>Body:</strong> JSON</p>
+        <pre>{
+    "phone": "628xxxxxxxxxxx"
+}</pre>
+
+        <h2>Response</h2>
+        <p><strong>Success:</strong> HTTP 200</p>
+        <pre>{
+    "success": true,
+    "otp": "xxxxx",
+    "message": "OTP terkirim"
+}</pre>
+        <p><strong>Error:</strong> HTTP 400/401</p>
+        <pre>{
+    "success": false,
+    "error": "Invalid API key or request"
+}</pre>
+
+        <h2>Usage Examples</h2>
+        
+        <h3>1. PHP (Using cURL)</h3>
+        <pre><code>&lt;?php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "http://103.172.205.189:3000/send-otp");
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "x-api-key: your_api_key"
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+    "phone" => "628xxxxxxxxxxx"
+]));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?&gt;</code></pre>
+
+        <h3>2. PHP (Using Guzzle)</h3>
+        <pre><code>&lt;?php
+require 'vendor/autoload.php';
+
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->post('http://103.172.205.189:3000/send-otp', [
+    'headers' => [
+        'Content-Type' => 'application/json',
+        'x-api-key' => 'your_api_key'
+    ],
+    'json' => [
+        'phone' => '628xxxxxxxxxxx'
+    ]
+]);
+
+echo $response->getBody();
+?&gt;</code></pre>
+
+        <h3>3. Node.js</h3>
+        <pre><code>const axios = require('axios');
+
+const sendOtp = async () => {
+    try {
+        const response = await axios.post('http://103.172.205.189:3000/send-otp', {
+            phone: '628xxxxxxxxxxx'
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': 'your_api_key'
+            }
+        });
+        console.log(response.data);
+    } catch (error) {
+        console.error(error.response.data);
+    }
+};
+
+sendOtp();</code></pre>
+
+        <h3>4. Python</h3>
+        <pre><code>import requests
+
+url = "http://103.172.205.189:3000/send-otp"
+headers = {
+    "Content-Type": "application/json",
+    "x-api-key": "your_api_key"
+}
+data = {
+    "phone": "628xxxxxxxxxxx"
+}
+
+response = requests.post(url, json=data, headers=headers)
+print(response.json())</code></pre>
+
+        <h3>5. Go</h3>
+        <pre><code>package main
+
+import (
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    url := "http://103.172.205.189:3000/send-otp"
+    data := map[string]string{"phone": "628xxxxxxxxxxx"}
+    jsonData, _ := json.Marshal(data)
+
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+    req.Header.Set("Content-Type", "application/json")
+    req.Header.Set("x-api-key", "your_api_key")
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+
+    fmt.Println("Response Status:", resp.Status)
+}</code></pre>
+    </div>
+</body>
+</html>
